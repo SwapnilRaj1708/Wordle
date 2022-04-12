@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: rgb(10, 0, 88);
+    /* display: flex;
+    justify-content: center; */
+    /* align-items: center; */
+    
+}
+.flex{
+    display: flex;
+    /* display: grid; */
+    /* position: relative; */
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    /* top: 050vh;
+    left: 50vw; */
+    /* background-color: yellow; */
+
+}
+#box1,#box2{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
