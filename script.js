@@ -13001,15 +13001,12 @@ var wordInput;
 var comment;
 var randomWord = solutionString[Math.floor(Math.random() * solutionString.length)];
 document.getElementById("submitButton").disabled = false;
-console.log(randomWord);
+// console.log(randomWord);
 function check() {
     let chr = String.fromCharCode((step - 1) + 97);
-    console.log(chr);
     for (let i = 0; i < 5; i++) {
         let letter = `${chr}${i + 1}`;
-        console.log(letter);
         document.getElementById(letter).innerHTML = images[wordInput[i].charCodeAt() - 97];
-        console.log("hello3");
     }
     var count = 0;
     let ans_flag = [0, 0, 0, 0, 0];
