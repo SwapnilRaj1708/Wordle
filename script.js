@@ -13050,6 +13050,10 @@ function check() {
             }
         }
     }
+    if (step == 6) {
+        document.getElementById("submitButton").disabled = true;
+        document.getElementById("comment").innerHTML = "TRY AGAIN!🙁";
+    }
 }
 function submission() {
     wordInput = document.getElementById("input").value;
