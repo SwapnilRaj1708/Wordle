@@ -13000,6 +13000,7 @@ var step = 0;
 var wordInput;
 var comment;
 var randomWord = solutionString[Math.floor(Math.random() * solutionString.length)];
+document.getElementById("submitButton").disabled = false;
 console.log(randomWord);
 function check() {
     let chr = String.fromCharCode((step - 1) + 97);
@@ -13024,6 +13025,7 @@ function check() {
     }
     if (count == 5) {
         comment.innerHTML = "🎉YOU HAVE GUESSED THE WORD🎉"
+        document.getElementById("submitButton").disabled = true;
     }
     else {
         for (let i = 0; i < 5; i++) {
