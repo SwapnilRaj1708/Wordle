@@ -1,64 +1,3 @@
-var randomWord = solutionString[Math.floor(Math.random() * solutionString.length)];
-console.log(randomWord);
-
-function logic() {
-    com = document.getElementById("comment");
-    if (inputWord.length != 5) {
-        com.innerHTML = "INVALID INPUT";
-    }
-    else {
-        // console.log(gussesString.indexOf(inputWord));
-        if (gussesString.indexOf(inputWord) == -1) {
-            com.innerHTML = "INVALID INPUT"
-        }
-        else {
-            inputWord = inputWord.toLowerCase();
-            // console.log(inputWord);
-            let ans_flag = [0, 0, 0, 0, 0];
-            let output = [];
-            let out_flag = [0, 0, 0, 0, 0];
-            
-            for (let i = 0; i < 5; i++) {
-                if (randomWord[i] == inputWord[i]) {
-                    output[i] = inputWord[i].toUpperCase();
-                    ans_flag[i] = 1;
-                    out_flag[i] = 1;
-                }
-            }
-            for (let i = 0; i < 5; i++) {
-                if (out_flag[i] == 1)
-                continue;
-                else {
-                        for (let j = 0; j < 5; j++) {
-                            if (ans_flag[j] == 1)
-                            continue;
-                            else {
-                                if (randomWord[j] == inputWord[i]) {
-                                    output[i] = inputWord[i].toLowerCase();
-                                ans_flag[j] = 1;
-                                out_flag[i] = 1;
-                            }
-                        }
-                    }
-                }
-            }
-            for (let i = 0; i < 5; i++) {
-                if (out_flag[i] == 0)
-                output[i] = '*';
-                // document.getElementById("comment").textContent += output[i];
-                console.log(output[i] + "  ")    
-                }
-                
-            }
-    }
-}
-var inputWord;
-var com;
-function submit() {
-    inputWord = document.getElementById("input").value;
-    console.log(inputWord);
-    logic();
-}
 const gussesString = ["aahed",
     "aalii",
     "aargh",
@@ -13031,3 +12970,101 @@ const solutionString = ["aback",
     "zebra",
     "zesty",
     "zonal"];
+var images = ["<i class=\"fa-solid fa-a\"></i>",
+    "<i class=\"fa-solid fa-b\"></i>",
+    "<i class=\"fa-solid fa-c\"></i>",
+    "<i class=\"fa-solid fa-d\"></i>",
+    "<i class=\"fa-solid fa-e\"></i>",
+    "<i class=\"fa-solid fa-f\"></i>",
+    "<i class=\"fa-solid fa-g\"></i>",
+    "<i class=\"fa-solid fa-h\"></i>",
+    "<i class=\"fa-solid fa-i\"></i>",
+    "<i class=\"fa-solid fa-j\"></i>",
+    "<i class=\"fa-solid fa-k\"></i>",
+    "<i class=\"fa-solid fa-l\"></i>",
+    "<i class=\"fa-solid fa-m\"></i>",
+    "<i class=\"fa-solid fa-n\"></i>",
+    "<i class=\"fa-solid fa-o\"></i>",
+    "<i class=\"fa-solid fa-p\"></i>",
+    "<i class=\"fa-solid fa-q\"></i>",
+    "<i class=\"fa-solid fa-r\"></i>",
+    "<i class=\"fa-solid fa-s\"></i>",
+    "<i class=\"fa-solid fa-t\"></i>",
+    "<i class=\"fa-solid fa-u\"></i>",
+    "<i class=\"fa-solid fa-v\"></i>",
+    "<i class=\"fa-solid fa-w\"></i>",
+    "<i class=\"fa-solid fa-x\"></i>",
+    "<i class=\"fa-solid fa-y\"></i>",
+    "<i class=\"fa-solid fa-z\"></i>"]
+var step = 0;
+var wordInput;
+var comment;
+var randomWord = solutionString[Math.floor(Math.random() * solutionString.length)];
+console.log(randomWord);
+function check() {
+    let chr = String.fromCharCode((step - 1) + 97);
+    console.log(chr);
+    for (let i = 0; i < 5; i++) {
+        let letter = `${chr}${i + 1}`;
+        console.log(letter);
+        document.getElementById(letter).innerHTML = images[wordInput[i].charCodeAt() - 97];
+        console.log("hello3");
+    }
+    var count = 0;
+    let ans_flag = [0, 0, 0, 0, 0];
+    let out_flag = [0, 0, 0, 0, 0];
+    for (let i = 0; i < 5; i++) {
+        if (randomWord[i] == wordInput[i]) {
+            count++;
+            let letter = `${chr}${i + 1}`;
+            document.getElementById(letter).style.backgroundColor = "#79b851"
+            ans_flag[i] = 1;
+            out_flag[i] = 1;
+        }
+    }
+    if (count == 5) {
+        comment.innerHTML = "🎉YOU HAVE GUESSED THE WORD🎉"
+    }
+    else {
+        for (let i = 0; i < 5; i++) {
+            if (out_flag[i] == 1)
+                continue;
+            else {
+                for (let j = 0; j < 5; j++) {
+                    if (ans_flag[j] == 1)
+                        continue;
+                    else {
+                        if (randomWord[j] == wordInput[i]) {
+                            let letter = `${chr}${i + 1}`;
+                            document.getElementById(letter).style.backgroundColor = "#f3c237"
+                            ans_flag[j] = 1;
+                            out_flag[i] = 1;
+                        }
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < 5; i++) {
+            if (out_flag[i] == 0) {
+                let letter = `${chr}${i + 1}`;
+                document.getElementById(letter).style.backgroundColor = "#656780"
+            }
+        }
+    }
+}
+function submission() {
+    wordInput = document.getElementById("input").value;
+    document.getElementById("input").value = "";
+    wordInput = wordInput.toLowerCase();
+    comment = document.getElementById("comment");
+    if (wordInput.length != 5) {
+        comment.innerHTML = "INVALID INPUT";
+    }
+    else if (gussesString.indexOf(wordInput) == -1 && solutionString.indexOf(wordInput) == -1) {
+        comment.innerHTML = "INVALID INPUT"
+    }
+    else {
+        step++;
+        check();
+    }
+}
