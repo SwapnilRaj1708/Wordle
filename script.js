@@ -13052,7 +13052,9 @@ function check() {
     }
     if (step == 6) {
         document.getElementById("submitButton").disabled = true;
+        if(count!=5){
         document.getElementById("comment").innerHTML = "TRY AGAIN!🙁";
+        }
     }
 }
 function submission() {
